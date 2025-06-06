@@ -18,8 +18,12 @@ public class MembershipEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long userId;
 
+    @Column(unique = true)
     private String email;
+
     private String password;
+
+    @Column(unique = true)
     private String nickname;
 
     @Column(name = "profile_image_path")

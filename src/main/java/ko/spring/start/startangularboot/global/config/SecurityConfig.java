@@ -24,9 +24,8 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf.disable()) // CSRF 일단 비활성화 (API용)
             .authorizeHttpRequests(auth -> auth
-                .anyRequest().permitAll()
-//                .requestMatchers(HttpMethod.POST,"/api/user/register").permitAll()  // 회원가입은 누구나
-//                .anyRequest().authenticated()                   // 나머지는 인증 필요
+                .requestMatchers("/api/user/**","/api/auth/**").permitAll()  // 회원가입은 누구나
+                .anyRequest().authenticated()                   // 나머지는 인증 필요
             )
             .httpBasic(Customizer.withDefaults()); // or formLogin 등
 
