@@ -22,6 +22,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
+            .cors(Customizer.withDefaults())
             .csrf(csrf -> csrf.disable()) // CSRF 일단 비활성화 (API용)
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/api/user/**","/api/auth/**").permitAll()  // 회원가입은 누구나
