@@ -1,11 +1,16 @@
 package ko.spring.start.startangularboot.membership.Entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
+import ko.spring.start.startangularboot.chat.Entity.ChatRoomUser;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,5 +33,8 @@ public class MembershipEntity {
 
     @Column(name = "profile_image_path")
     private String profileImagePath;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<ChatRoomUser> chatRoomUsers = new ArrayList<>();
 
 }
